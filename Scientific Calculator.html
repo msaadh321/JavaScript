@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            width: 100%;
+        }
+        .calculator {
+            border: 1px solid #ccc;
+            padding: 40px;
+            border-radius: 10px;
+            background-color: #222;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: white;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 24px;
+           
+            border-radius: 5px;
+            background-color: #333;
+            color: white;
+            text-align: right;
+        }
+        button {
+            width: 20%;
+            padding: 15px;
+            font-size: 20px;
+            margin: 5px 1%;
+            border: none;
+            border-radius: 100px;
+            background-color: rgb(68, 68, 68);
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: gainsboro;
+            color: black;
+        }
+        .operator {
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <input type="text" id="display" disabled>
+    <div>
+        <button onclick="clearDisplay()" style="background-color: grey;">C</button>
+        <button onclick="appendToDisplay('(')"> ( </button>
+        <button onclick="appendToDisplay(')')"> ) </button>
+        <button onclick="appendToDisplay('**')" class="operator">^</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('7')">7</button>
+        <button onclick="appendToDisplay('8')">8</button>
+        <button onclick="appendToDisplay('9')">9</button>
+        <button onclick="appendToDisplay('/') " class="operator">÷</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('4')">4</button>
+        <button onclick="appendToDisplay('5')">5</button>
+        <button onclick="appendToDisplay('6')">6</button>
+        <button onclick="appendToDisplay('*')" class="operator">x</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('1')">1</button>
+        <button onclick="appendToDisplay('2')">2</button>
+        <button onclick="appendToDisplay('3')">3</button>
+        <button onclick="appendToDisplay('-')" class="operator">-</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('0')" style="width: 44%; text-align: left;">0</button>
+        <button onclick="appendToDisplay('.')">.</button>
+        <button onclick="calculateResult()" class="operator">=</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('Math.sin(')">sin</button>
+        <button onclick="appendToDisplay('Math.cos(')">cos</button>
+        <button onclick="appendToDisplay('Math.tan(')">tan</button>
+        <button onclick="appendToDisplay('Math.log(')">log</button>
+    </div>
+    <div>
+        <button onclick="appendToDisplay('Math.sqrt(')">√</button>
+        <button onclick="appendToDisplay('Math.pow(')">x²</button>
+        <button onclick="appendToDisplay('Math.E')">e</button>
+        <button onclick="appendToDisplay('Math.PI')">π</button>
+    </div>
+</div>
+
+<script>
+    function appendToDisplay(value) {
+        const display = document.getElementById('display');
+        const lastChar = display.value[display.value.length - 1];
+        const operators = ['+', '-', '*', '/', '%', 'Math.sin', 'Math.cos', 'Math.tan', 'Math.log', 'Math.sqrt', 'Math.pow'];
+
+        // Prevent multiple consecutive operators
+        if (operators.includes(value) && operators.includes(lastChar)) {
+            return;
+        }
+        
+        display.value += value;
+    }
+
+    function clearDisplay() {
+        document.getElementById('display').value = '';
+    }
+
+    function calculateResult() {
+        const display = document.getElementById('display');
+        try {
+            const result = eval(display.value.replace(/\*\*/g, '^'));
+            display.value = result !== undefined ? result : '';
+        } catch (error) {
+            display.value = 'Math Error';
+        }
+    }
+</script>
+
+</body>
+</html>

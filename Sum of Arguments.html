@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum of Arguments - JavaScript Project</title>
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+       button {
+            margin: 10px;
+            padding: 20px;
+            background-color: black;
+            color: white;
+            border: wheat;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        button:hover {
+            background-color: blanchedalmond;
+            color: black;
+            
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Sum of Arguments Project</h1>
+
+    <button onclick="sumOfArguments(10, 20, 30)">Calculate Sum of Arguments</button>
+    <button onclick="printTrigonometryValues(45)">Print Trigonometry Values (for 45°)</button>
+
+    <div class="output">
+        <h2>Output:</h2>
+        <pre id="output"></pre>
+    </div>
+
+<script>
+    // Function to calculate the sum of arguments
+        function sumOfArguments(...args) {
+            const outputDiv = document.getElementById("output");
+            let sum = args.reduce((acc, current) => acc + current, 0);  // Summing all arguments
+            outputDiv.textContent = "Sum of Arguments: " + sum;
+        }
+
+        // Function to print trigonometric values (sin, cos, tan) for a given degree
+        function printTrigonometryValues(degree) {
+            const outputDiv = document.getElementById("output");
+
+            // Convert degrees to radians for JavaScript Math functions
+            let radians = degree * (Math.PI / 180);
+
+            let sinValue = Math.sin(radians).toFixed(4);  // Rounded to 4 decimal places
+            let cosValue = Math.cos(radians).toFixed(4);
+            let tanValue = Math.tan(radians).toFixed(4);
+
+            outputDiv.textContent = `Trigonometry Values for ${degree}°:
+    Sin(${degree}°) = ${sinValue}
+    Cos(${degree}°) = ${cosValue}
+    Tan(${degree}°) = ${tanValue}`;
+        }
+
+</script>
+
+</body>
+</html>

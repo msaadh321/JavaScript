@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methods and Loops - JavaScript Project</title>
+    <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        button {
+            margin: 10px;
+            padding: 20px;
+            background-color: black;
+            color: white;
+            border: wheat;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        button:hover {
+            background-color: blanchedalmond;
+            color: black;
+            
+        }
+        .output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JavaScript Methods and Loops Project</h1>
+
+    <button onclick="printRandomNumbers()">Print Random Numbers</button>
+    <button onclick="printCurrentDate()">Print Current Date</button>
+    <button onclick="printRoundedRandomNumber()">Print Rounded Random Number</button>
+
+    <div class="output">
+        <h2>Output:</h2>
+        <pre id="output"></pre>
+    </div>
+<script>
+    // Function to print a random set of numbers
+        function printRandomNumbers() {
+            const outputDiv = document.getElementById("output");
+            outputDiv.textContent = "Random Set of Numbers:\n";
+            for (let i = 0; i < 5; i++) {  // Generating 5 random numbers
+                let randomNum = Math.random();
+                outputDiv.textContent += randomNum + "\n";
+            }
+        }
+
+        // Function to print the current date
+        function printCurrentDate() {
+            const outputDiv = document.getElementById("output");
+            let currentDate = new Date();
+            outputDiv.textContent = "Current Date: " + currentDate + "\n";
+        }
+
+        // Function to print a rounded random number
+        function printRoundedRandomNumber() {
+            const outputDiv = document.getElementById("output");
+            let randomRounded = Math.round(Math.random() * 100);  // Random number between 0 and 100
+            outputDiv.textContent = "Rounded Random Number: " + randomRounded + "\n";
+        }
+
+</script>
+</body>
+</html>
